@@ -2,7 +2,7 @@ import './App.css';
 import Sidebar from './components/Sidebar';
 import Note from './pages/Note';
 import CreateNote from './pages/CreateNote';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -16,6 +16,19 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function App() {
   const [notes, setNotes] = useState([]);
+  const [searchNote, setSearchNote] = React.useState("")
+
+useEffect(()=>{
+  // if(searchNote.length = 0){
+  //   return setNotes(notes)
+  // }
+  if(searchNote.length > 0){
+  const search = notes.filter(note=>note.title.includes(searchNote))
+  setNotes(search)}
+  else{
+    return setNotes(notes)
+  }
+},[searchNote])
 
   function addNote(newNote) {
     console.log(newNote);
@@ -77,11 +90,13 @@ function App() {
         console.log(err);
       })
   }
-  console.log(notes);
+   console.log(notes);
   return (
     // <div className="App">
     <div>
-      <Sidebar />
+      <Sidebar 
+      setSearchNote={setSearchNote}
+      />
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Item>
@@ -91,6 +106,7 @@ function App() {
         </Grid>
 
         {notes.map((notei) => {
+
           return (
             <Grid item xs={2}><Item>
               <Note

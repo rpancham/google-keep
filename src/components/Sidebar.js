@@ -26,8 +26,11 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ModeIcon from '@mui/icons-material/Mode';
 import ArchiveIcon from '@mui/icons-material/Archive';
+import { Divider } from '@mui/material';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 
-const drawerWidth = 240;
+const drawerWidth = 150;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -136,10 +139,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function MiniDrawer(props) {
+export default function Sidebar({setSearchNote}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  console.log(props)
+  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -155,6 +158,11 @@ export default function MiniDrawer(props) {
     setValue(newValue);
     navigate(newValue);
   };
+
+
+ 
+
+
 
   // const handleRefresh1=()=>{
   //   console.log('handleRefresh',props)
@@ -190,12 +198,14 @@ export default function MiniDrawer(props) {
             Keep
           </Typography>
 
-          <Search>
+          <Search >
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
+              input type='text'
               placeholder="Search…"
+              onChange={e => setSearchNote(e.target.value)}
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
@@ -242,63 +252,86 @@ export default function MiniDrawer(props) {
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
-
-
-
-
-        <IconButton sx={{ width: 400 }} value={value} onChange={handleChange}> </IconButton>
+        <Divider />
 
         <List>
-          <ListItem onClick>
+          {['Notes'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                < LightbulbIcon />
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
 
-            <IconButton size="large" color="inherit">
-              < LightbulbIcon />
-              <Typography variant="h6" noWrap component="div">
-                <h5>Notes</h5>
-              </Typography>
-
-            </IconButton>
-          </ListItem>
-          <ListItem onClick>
-            <IconButton size="large" color="inherit">
-              < NotificationsNoneIcon />
-              <Typography variant="h6" noWrap component="div">
-                <h5>Reminder</h5>
-              </Typography>
-            </IconButton>
-          </ListItem>
-          <ListItem onClick>
-            <IconButton size="large" color="inherit">
-              < ModeIcon />
-              <Typography variant="h6" noWrap component="div">
-                <h5>EditLabels</h5>
-              </Typography>
-            </IconButton>
-          </ListItem>
-          <ListItem onClick>
-            <IconButton size="large" color="inherit">
-              <ArchiveIcon /><Typography variant="h6" noWrap component="div">
-                <h5>Archieve</h5>
-              </Typography>
-            </IconButton>
-          </ListItem>
-          <ListItem onClick>
-            <IconButton size="large" color="inherit">
-              < DeleteIcon />
-              <Typography variant="h6" noWrap component="div">
-                <h5>Trash</h5>
-              </Typography>
-            </IconButton>
-          </ListItem>
+          ))}
         </List>
 
+        <List>
+          {['Reminder'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                < NotificationsNoneIcon />
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+
+          ))}
+        </List>
+
+        <List>
+          {['EditLabels'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                < ModeIcon />
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+
+          ))}
+        </List>
+
+
+        <List>
+          {['Archieve'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                <ArchiveIcon />
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+
+          ))}
+        </List>
+
+        <List>
+          {['Trash'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                <DeleteIcon />
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+
+          ))}
+        </List>
+
+
+
+
+
+
+
+
+
+
+
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 
 
-        <DrawerHeader />
 
-      </Box>
+      <DrawerHeader />
+
     </Box>
+
   );
 }

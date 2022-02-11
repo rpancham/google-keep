@@ -46,10 +46,10 @@ form input{
   padding: 4px 10px;
   margin-bottom: 10px;
   outline:none;
-  text-align: center;
+  text-align: left;
   resize: none;
   font-family: 'Google Sans',Roboto,Arial,sans-serif;
-  font-size: 1.375rem;
+  font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0;
   line-height: 1.rem;
@@ -73,21 +73,32 @@ form textarea{
   
 }
 form button{
-  position: absolute;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  right: 18px;
-  bottom:-18px;
-  background: rgb(244,248,28);
-  color: rgb(7, 7, 7);
-  border: none;
-  border-radius:50% ;
+  position: relative;
+/* display:flex; */
+ float: right;
+ margin-right: 10px;
+ color: rgb(7, 7, 7);
+ background: rgb(244,248,28);
+ cursor: pointer;
+  outline: none;
   width:36px;
   height: 36px;
+  /* justify-content: center;
+  
+  align-items: center; */
+  /* right: 18px;
+  bottom:-18px; */
+  
+  
+  border: none;
+  border-radius:50% ;
+
   box-shadow: 0 1px 3px rgb(165,165,165);
-  cursor: pointer;
-  outline: none;
+  
+  
+
+
+
 } 
 
 .note{

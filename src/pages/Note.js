@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import axios from 'axios';
-import "../index.css"
+import "../index.css";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Tooltip from '@mui/material/Tooltip';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+
 
 function Note(props) {
   const [displayForm, setForm] = useState(false);
@@ -15,6 +16,8 @@ function Note(props) {
   const [id, setId] = useState(props.id);
   const [edited, setedited] = useState(props.edited);
   const [created, setcreated] = useState(props.created);
+
+  const [searchNote, setSearchNote] = useState('');
 
   console.log(props);
 
@@ -83,6 +86,7 @@ function Note(props) {
 
   return (
     <div className="note" >
+      {/* note={Notes.filter((notei)=>notei.text.toLowerCase().includes(searchNote))} */}
       <h1>{props.title}</h1>
       <p>{props.content}</p>
 
