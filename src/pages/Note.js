@@ -8,6 +8,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Tooltip from '@mui/material/Tooltip';
 import LabelIcon from '@mui/icons-material/Label';
+import CreateLabel from "./CreateLabel";
 
 
 function Note(props) {
@@ -18,6 +19,7 @@ function Note(props) {
   const [label,setLabel]=useState(props.label);
   const [edited, setedited] = useState(props.edited);
   const [created, setcreated] = useState(props.created);
+  const [CreateLabel, setCreateLabel]=useState("");
 
   const [searchNote, setSearchNote] = useState('');
 
@@ -125,9 +127,11 @@ function Note(props) {
 
         </Tooltip>
         <Tooltip title="Label">
-          <button onClick={() => setForm(!displayForm)}><LabelIcon /></button>
+          
+          <button><LabelIcon /></button>
 
-        </Tooltip>
+        </Tooltip>{/* <CreateLabel 
+          setCreateLabel={setCreateLabel}/> */}
       </div>
 
     </div>

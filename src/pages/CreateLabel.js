@@ -86,7 +86,7 @@ export default function CreateLabel() {
     <div>
       {/* <Button onClick={handleOpen}>Open modal</Button> */}
       
-<Modal
+<CreateLabel
                 open={openModal}
                 onClose={handleCloseModal}
                 aria-labelledby="modal-modal-title"
@@ -125,7 +125,7 @@ export default function CreateLabel() {
                     <button onClick={handleCloseModal}>Close</button>
                   </Box>
                 </Fade>
-              </Modal>
+              </CreateLabel>
     </div>
   );
 }

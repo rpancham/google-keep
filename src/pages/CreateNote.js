@@ -3,27 +3,10 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import AddIcon from '@mui/icons-material/Add';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import LabelIcon from '@mui/icons-material/Label';
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Fade from '@mui/material/Fade';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-import Modal from '@mui/material/Modal';
-import Popper from '@mui/material/Popper';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
 import Tooltip from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import React, { useState } from "react";
-import CreateLabel from "./CreateLabel";
-
+import CreateLabel from './CreateLabel';
 
 function CreateNote(props) {
   const [isExpanded, setExpanded] = useState(false);
@@ -131,6 +114,8 @@ function CreateNote(props) {
     p: 1,
   };
 
+  const [CreateLabel,setCreateLabel] = useState("");
+
 
   const [openKebab, setOpenKebab] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -191,9 +176,10 @@ function CreateNote(props) {
             </MenuItem>
           ))}
         </Menu>
+        <CreateLabel 
+      setCreateLabel={setCreateLabel}>
 
-
-
+      </CreateLabel>
       </form>
     </div>
   );
