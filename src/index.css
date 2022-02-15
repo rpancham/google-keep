@@ -83,21 +83,15 @@ form button{
   outline: none;
   width:36px;
   height: 36px;
-  /* justify-content: center;
   
+  /* justify-content: center;
   align-items: center; */
   /* right: 18px;
   bottom:-18px; */
-  
-  
+
   border: none;
   border-radius:50% ;
-
   box-shadow: 0 1px 3px rgb(165,165,165);
-  
-  
-
-
 
 } 
 

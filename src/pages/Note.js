@@ -3,10 +3,11 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import axios from 'axios';
 import "../index.css";
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Tooltip from '@mui/material/Tooltip';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+
 
 
 function Note(props) {
@@ -14,6 +15,7 @@ function Note(props) {
   const [title, setTitle] = useState(props.title);
   const [content, setContent] = useState(props.content);
   const [id, setId] = useState(props.id);
+  const [label,setLabel]=useState(props.label);
   const [edited, setedited] = useState(props.edited);
   const [created, setcreated] = useState(props.created);
 
@@ -44,6 +46,7 @@ function Note(props) {
       "title": props.title,
       "content": props.content,
       "id": props.id,
+      // "label":props.label,
       "edited": props.edited,
       "created": props.created
 
@@ -94,9 +97,14 @@ function Note(props) {
       <form
         onSubmit={handleEdit}
         className={`${displayForm ? "show" : "hide"}`}
-      >
-        <input defaultValue={title} onChange={(handleTitleChange)} placeholder="Title" required={true} />
-        <input defaultValue={content} onChange={(handleContentChange)} placeholder="Content" required={true} />
+      ><Tooltip
+      title="Title"
+    >
+        <input defaultValue={title} onChange={(handleTitleChange)} placeholder="Title" required={true} /></Tooltip>
+        <Tooltip
+          title="Content"
+        >
+        <input defaultValue={content} onChange={(handleContentChange)} placeholder="Content" required={true} /></Tooltip>
         <CheckCircleIcon onClick={handleSumbit}>Submit</CheckCircleIcon>
         <CloseRoundedIcon onClick={handleClose}>Close</CloseRoundedIcon>
       </form>

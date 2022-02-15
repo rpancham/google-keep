@@ -113,6 +113,7 @@ useEffect(()=>{
                 key={notei.id}
                 id={notei.id}
                 title={notei.title}
+                label={notei.label}
                 created={notei.created}
                 edited={notei.edited}
                 content={notei.content}
