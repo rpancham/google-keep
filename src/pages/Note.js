@@ -7,7 +7,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Tooltip from '@mui/material/Tooltip';
-
+import LabelIcon from '@mui/icons-material/Label';
 
 
 function Note(props) {
@@ -122,6 +122,10 @@ function Note(props) {
         </Tooltip>
         <Tooltip title="Edit">
           <button onClick={() => setForm(!displayForm)}><EditRoundedIcon /></button>
+
+        </Tooltip>
+        <Tooltip title="Label">
+          <button onClick={() => setForm(!displayForm)}><LabelIcon /></button>
 
         </Tooltip>
       </div>
