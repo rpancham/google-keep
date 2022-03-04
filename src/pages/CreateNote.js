@@ -3,10 +3,12 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import AddIcon from '@mui/icons-material/Add';
+import { TextField, textFieldClasses } from "@mui/material";
 import Tooltip from '@mui/material/Tooltip';
 import axios from 'axios';
 import React, { useState } from "react";
 import CreateLabel from './CreateLabel';
+
 
 function CreateNote(props) {
   const [isExpanded, setExpanded] = useState(false);
@@ -43,9 +45,9 @@ function CreateNote(props) {
     axios.post("http://localhost:8080/Keep/keep", {
       "title": note.title,
       "content": note.content,
-      "created": new Date().toDateString(),
-      "edited": new Date().toDateString(),
-      //"label": note.label
+      "created": new Date().toLocaleString(),
+      "edited": new Date().toLocaleString(),
+      "label": note.label
 
 
     }
@@ -114,7 +116,6 @@ function CreateNote(props) {
     p: 1,
   };
 
-  const [CreateLabel,setCreateLabel] = useState("");
 
 
   const [openKebab, setOpenKebab] = useState(false);
@@ -150,6 +151,17 @@ function CreateNote(props) {
           placeholder="Take a note..."
           rows={isExpanded ? 3 : 1}
         />
+{/* 
+        <input
+        type="text"
+          name="Label"
+          // onChange={handleChange}
+          onClick={handleExpanded}
+          value={note.label}
+          placeholder="Label"
+        /> */}
+
+
         <Tooltip
           title="AddNote"
         >
@@ -176,10 +188,9 @@ function CreateNote(props) {
             </MenuItem>
           ))}
         </Menu>
-        <CreateLabel 
-      setCreateLabel={setCreateLabel}>
+        <CreateLabel openModal={openModal}
+          handleCloseModal={handleCloseModal} />
 
-      </CreateLabel>
       </form>
     </div>
   );

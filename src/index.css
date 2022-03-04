@@ -143,6 +143,14 @@ align-items: center; */
   height: 36px;
 
 }
+.header{
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+}
+.dark-mode{
+  background-color: black;
+}
 /* 
 form.note input
  {

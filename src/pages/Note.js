@@ -9,6 +9,7 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import Tooltip from '@mui/material/Tooltip';
 import LabelIcon from '@mui/icons-material/Label';
 import CreateLabel from "./CreateLabel";
+import Chip from '@mui/material/Chip';
 
 
 function Note(props) {
@@ -24,6 +25,10 @@ function Note(props) {
   const [searchNote, setSearchNote] = useState('');
 
   console.log(props);
+
+  const handleDelete = () => {
+    console.info('You clicked the delete icon.');
+  };
 
   function handleClick() {
     axios.delete("http://localhost:8080/Keep/keep/" + props.id
@@ -48,7 +53,7 @@ function Note(props) {
       "title": props.title,
       "content": props.content,
       "id": props.id,
-      // "label":props.label,
+       "label":props.label,
       "edited": props.edited,
       "created": props.created
 
@@ -92,21 +97,22 @@ function Note(props) {
   return (
     <div className="note" >
       {/* note={Notes.filter((notei)=>notei.text.toLowerCase().includes(searchNote))} */}
-      <h1>{props.title}</h1>
+    <Tooltip title={"Title  " + props.title }>
+    <h1>{props.title}</h1>
+      </Tooltip>  
+      <Tooltip title={"Content  " + props.content}>
       <p>{props.content}</p>
+      </Tooltip><h1>{props.label}</h1>
 
 
       <form
         onSubmit={handleEdit}
         className={`${displayForm ? "show" : "hide"}`}
-      ><Tooltip
-      title="Title"
-    >
-        <input defaultValue={title} onChange={(handleTitleChange)} placeholder="Title" required={true} /></Tooltip>
-        <Tooltip
-          title="Content"
-        >
-        <input defaultValue={content} onChange={(handleContentChange)} placeholder="Content" required={true} /></Tooltip>
+      >
+      
+        <input defaultValue={title} onChange={(handleTitleChange)} placeholder="Title" required={true} />
+      
+        <input defaultValue={content} onChange={(handleContentChange)} placeholder="Content" required={true} />
         <CheckCircleIcon onClick={handleSumbit}>Submit</CheckCircleIcon>
         <CloseRoundedIcon onClick={handleClose}>Close</CloseRoundedIcon>
       </form>
@@ -124,16 +130,15 @@ function Note(props) {
         </Tooltip>
         <Tooltip title="Edit">
           <button onClick={() => setForm(!displayForm)}><EditRoundedIcon /></button>
-
         </Tooltip>
-        <Tooltip title="Label">
-          
-          <button><LabelIcon /></button>
-
-        </Tooltip>{/* <CreateLabel 
-          setCreateLabel={setCreateLabel}/> */}
+        {/* <Tooltip title="Label">
+          <button onClick={()=> setCreateLabel(CreateLabel)}><LabelIcon /></button>
+        </Tooltip> */}
+        <Tooltip title="Label" align="right">
+        <Chip label="Label"  onDelete={handleDelete} />
+        </Tooltip>
       </div>
-
+     
     </div>
   );
 }

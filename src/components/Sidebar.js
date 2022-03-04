@@ -29,8 +29,14 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 import { Divider } from '@mui/material';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+
 
 const drawerWidth = 150;
+
+
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -40,7 +46,6 @@ const openedMixin = (theme) => ({
   }),
   overflowX: 'hidden',
 });
-
 const closedMixin = (theme) => ({
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
@@ -99,6 +104,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -139,8 +147,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
+
 export default function Sidebar({setSearchNote}) {
-  const theme = useTheme();
+// const theme = useTheme();
+ 
   const [open, setOpen] = React.useState(false);
   
   const handleDrawerOpen = () => {
@@ -158,9 +169,28 @@ export default function Sidebar({setSearchNote}) {
     setValue(newValue);
     navigate(newValue);
   };
+  
+  // const colorMode = React.useContext(ColorModeContext);
 
+  const [mode, setMode] = React.useState('light');
+  const colorMode = React.useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+      },
+    }),
+    [],
+  );
 
- 
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+        },
+      }),
+    [mode],
+  );
 
 
 
@@ -175,6 +205,7 @@ export default function Sidebar({setSearchNote}) {
   // }
 
   return (
+    
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar color='inherit' position="fixed" open={open} >
@@ -195,7 +226,7 @@ export default function Sidebar({setSearchNote}) {
           </IconButton>
           <img src={images} alt="keep" width="25px" />
           <Typography variant="h6" noWrap component="div">
-            Keep
+            Note
           </Typography>
 
           <Search >
@@ -241,6 +272,29 @@ export default function Sidebar({setSearchNote}) {
               <AppsIcon />
             </IconButton>
           </Box>
+          <Box sx={{ flexGrow: 1 }} />
+          <Box
+      sx={{
+        display: 'flex',
+        // width: '100%',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+        bgcolor: 'background.default',
+        color: 'text.primary',
+        borderRadius: 1,
+        p: 1,
+      }}
+    >
+      {theme.palette.mode} mode
+      <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+        {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+      </IconButton>
+    </Box>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        
+      </ThemeProvider>
+    </ColorModeContext.Provider>
 
 
 

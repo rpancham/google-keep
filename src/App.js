@@ -1,5 +1,6 @@
 import './App.css';
 import Sidebar from './components/Sidebar';
+import Header from './components/Header';
 import Note from './pages/Note';
 import CreateNote from './pages/CreateNote';
 import React, { useEffect, useState } from "react";
@@ -18,14 +19,11 @@ const Item = styled(Paper)(({ theme }) => ({
 function App() {
   const [notes, setNotes] = useState([]);
   const [searchNote, setSearchNote] = React.useState("")
-
+  // const [darkMode, setDarkMode] = useState(false);
 useEffect(()=>{
-  // if(searchNote.length = 0){
-  //   return setNotes(notes)
-  // }
   if(searchNote.length > 0){
-  const search = notes.filter(note=>note.title.includes(searchNote))
-  setNotes(search)}
+   const search = notes.filter(note=>note.content.includes(searchNote)) 
+    setNotes(search)}
   else{
     return setNotes(notes)
   }
@@ -95,6 +93,8 @@ useEffect(()=>{
   return (
     // <div className="App">
     <div>
+      {/* <div className={`${darkMode && 'darkMode'}`}/>
+				<Header handleToggleDarkMode={setDarkMode} /> */}
       <Sidebar 
       setSearchNote={setSearchNote}
       />
